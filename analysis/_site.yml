@@ -1,7 +1,7 @@
-name: "poisson_ash_normalmix"
+name: poisson_ash_normalmix
 output_dir: ../docs
 navbar:
-  title: "poisson_ash_normalmix"
+  title: poisson_ash_normalmix
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/YushaLiu/poisson_ash_normalmix
 output:
   workflowr::wflow_html:
     toc: yes
