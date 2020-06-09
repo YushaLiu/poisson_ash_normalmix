@@ -504,16 +504,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtree5a7965272bd597ea9949963b3ed958c5db56276btargetblank5a79652a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/5a7965272bd597ea9949963b3ed958c5db56276b" target="_blank">5a79652</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtree842d1356a72db8483399d84de9ef70c229239815targetblank842d135a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/842d1356a72db8483399d84de9ef70c229239815" target="_blank">842d135</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtree5a7965272bd597ea9949963b3ed958c5db56276btargetblank5a79652a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtree842d1356a72db8483399d84de9ef70c229239815targetblank842d135a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/5a7965272bd597ea9949963b3ed958c5db56276b" target="_blank">5a79652</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/842d1356a72db8483399d84de9ef70c229239815" target="_blank">842d135</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -562,6 +562,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/YushaLiu/poisson_ash_normalmix/blob/842d1356a72db8483399d84de9ef70c229239815/analysis/first-analysis.Rmd" target="_blank">842d135</a>
+</td>
+<td>
+yushaliu
+</td>
+<td>
+2020-06-09
+</td>
+<td>
+Add my first analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/YushaLiu/poisson_ash_normalmix/aaea64f77314587c34b690c0d770d9297302e1c0/docs/first-analysis.html" target="_blank">aaea64f</a>
+</td>
+<td>
+yushaliu
+</td>
+<td>
+2020-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -620,7 +654,6 @@ y &lt;- rpois(n,lambdasparse); s &lt;- rep(1, n)</code></pre>
 <h3>Fit Poisson ash</h3>
 <pre class="r"><code>sigma2 &lt;- c(1e-6, 1e-5, 1e-4, 4e-4, 1e-3, 4e-3, 1e-2, 2e-2, 4e-2, 8e-2, 0.16, 0.32, 0.64, 1, 2, 4, 8, 16)
 
-RUNTIME = c()
 start_time = proc.time()
 fit &lt;- pois_ash(y, s, sigma2, init=NULL, maxiter=200, tol=1e-6, verbose=FALSE)
 lambda.pm &lt;- rowSums(fit$Ez * exp(fit$mu + fit$m + fit$v2/2))
@@ -631,10 +664,47 @@ runtime = proc.time() - start_time</code></pre>
 <pre class="r"><code>## ELBO plot over iteration
 plot(fit$ELBO, xlab = &quot;niter&quot;, ylab = &quot;elbo&quot;)</code></pre>
 <p><img src="figure/first-analysis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/YushaLiu/poisson_ash_normalmix/blob/aaea64f77314587c34b690c0d770d9297302e1c0/docs/figure/first-analysis.Rmd/unnamed-chunk-4-1.png" target="_blank">aaea64f</a>
+</td>
+<td>
+yushaliu
+</td>
+<td>
+2020-06-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>## running time
 runtime</code></pre>
 <pre><code>   user  system elapsed 
- 14.363   2.082  16.457 </code></pre>
+ 14.520   2.165  16.694 </code></pre>
 </div>
 <div id="check-results" class="section level3">
 <h3>Check results</h3>
@@ -646,12 +716,49 @@ fit$pi</code></pre>
 [16] 5.789069e-01 1.000000e-08 1.000000e-08</code></pre>
 <pre class="r"><code>## compare posterior mean with the observed count and true lambda
 post.data = rbind(data.frame(type = &quot;true lambda&quot;, values=lambdasparse, x=seq(1:n)),
-                  data.frame(type = &quot;observation&quot;, values=y, x=seq(1:n)),
+                  data.frame(type = &quot;observed count&quot;, values=y, x=seq(1:n)),
                   data.frame(type = &quot;posterior mean&quot;, values=lambda.pm, x=seq(1:n)))
 
 ggplot(post.data, aes(x=x, y=values, group=type, colour=type)) + 
   geom_point(aes(colour = type),size = 1) + ylab(&quot;Possion ash&quot;) + xlab(expression(y))+facet_grid(type~.,scales=&quot;free_y&quot;) + ylim(range(y))</code></pre>
 <p><img src="figure/first-analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/YushaLiu/poisson_ash_normalmix/blob/aaea64f77314587c34b690c0d770d9297302e1c0/docs/figure/first-analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">aaea64f</a>
+</td>
+<td>
+yushaliu
+</td>
+<td>
+2020-06-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
