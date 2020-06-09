@@ -50,7 +50,6 @@ y <- rpois(n,lambdasparse); s <- rep(1, n)
 ```{r warning=F}
 sigma2 <- c(1e-6, 1e-5, 1e-4, 4e-4, 1e-3, 4e-3, 1e-2, 2e-2, 4e-2, 8e-2, 0.16, 0.32, 0.64, 1, 2, 4, 8, 16)
 
-RUNTIME = c()
 start_time = proc.time()
 fit <- pois_ash(y, s, sigma2, init=NULL, maxiter=200, tol=1e-6, verbose=FALSE)
 lambda.pm <- rowSums(fit$Ez * exp(fit$mu + fit$m + fit$v2/2))
@@ -73,7 +72,7 @@ fit$pi
 
 ## compare posterior mean with the observed count and true lambda
 post.data = rbind(data.frame(type = "true lambda", values=lambdasparse, x=seq(1:n)),
-                  data.frame(type = "observation", values=y, x=seq(1:n)),
+                  data.frame(type = "observed count", values=y, x=seq(1:n)),
                   data.frame(type = "posterior mean", values=lambda.pm, x=seq(1:n)))
 
 ggplot(post.data, aes(x=x, y=values, group=type, colour=type)) + 
