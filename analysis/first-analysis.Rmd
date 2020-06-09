@@ -1,0 +1,81 @@
+---
+title: "Simulation for poisson ash using normal mix prior"
+author: "Yusha Liu"
+header-includes:
+   - \usepackage{amsmath}
+   - \usepackage{bm}
+   - \usepackage{bbm}
+   - \usepacakge{mathtools}
+date: "2020-06-09"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+Run a simple simulation using poisson ash, which places a normal mixture prior on $\lambda_i$. The data are generated following http://dattahub.github.io/GHstancodes.
+
+### Model
+\begin{align}
+y_i & \sim Pois(s_i \lambda_i) \\
+\beta_i & = \log(\lambda_i) \sim \sum_k \pi_k N(\mu, \sigma_k^2) \\
+\end{align}
+Letting $\tilde{\beta}_i = \beta_i - \mu$, we approximate the posterior $p(\tilde{\beta}_i \mid y_i, \mu, \pi)$ with a mixture of normal $\sum_k \zeta_{ik} N(m_{ik}, v_{ik}^2)$ using variational Bayes. 
+
+```{r warning=FALSE, message=FALSE}
+library(ggplot2)
+theme_set(theme_bw())
+library(plyr)
+library(dplyr)
+library(reshape2)
+source("code/util.R")
+```
+
+### Simulate Poisson data
+```{r warning=F}
+set.seed(786)
+n = 200; w = 0.9
+idx = rep(1,n)
+lambdasparse = rep(0,n)
+for (i in 1:n)
+{
+  if(i<=round(n*w)){
+    lambdasparse[i]<- 0.1
+    idx[i] <- 0}
+  else {lambdasparse[i] <- 10}}
+y <- rpois(n,lambdasparse); s <- rep(1, n)
+```
+
+### Fit Poisson ash
+```{r warning=F}
+sigma2 <- c(1e-6, 1e-5, 1e-4, 4e-4, 1e-3, 4e-3, 1e-2, 2e-2, 4e-2, 8e-2, 0.16, 0.32, 0.64, 1, 2, 4, 8, 16)
+
+RUNTIME = c()
+start_time = proc.time()
+fit <- pois_ash(y, s, sigma2, init=NULL, maxiter=200, tol=1e-6, verbose=FALSE)
+lambda.pm <- rowSums(fit$Ez * exp(fit$mu + fit$m + fit$v2/2))
+runtime = proc.time() - start_time
+```
+
+### ELBO and runtime
+```{r warning=F}
+## ELBO plot over iteration
+plot(fit$ELBO, xlab = "niter", ylab = "elbo")
+
+## running time
+runtime
+```
+
+### Check results
+```{r}
+## estimated pi
+fit$pi
+
+## compare posterior mean with the observed count and true lambda
+post.data = rbind(data.frame(type = "true lambda", values=lambdasparse, x=seq(1:n)),
+                  data.frame(type = "observation", values=y, x=seq(1:n)),
+                  data.frame(type = "posterior mean", values=lambda.pm, x=seq(1:n)))
+
+ggplot(post.data, aes(x=x, y=values, group=type, colour=type)) + 
+  geom_point(aes(colour = type),size = 1) + ylab("Possion ash") + xlab(expression(y))+facet_grid(type~.,scales="free_y") + ylim(range(y))
+```
