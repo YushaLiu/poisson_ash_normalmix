@@ -413,7 +413,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-06-09
+<strong>Last updated:</strong> 2020-06-10
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -504,16 +504,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtree842d1356a72db8483399d84de9ef70c229239815targetblank842d135a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/842d1356a72db8483399d84de9ef70c229239815" target="_blank">842d135</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtreedf9063a7c7c794f1bd9b598b7d72372f2f283988targetblankdf9063aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/df9063a7c7c794f1bd9b598b7d72372f2f283988" target="_blank">df9063a</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtree842d1356a72db8483399d84de9ef70c229239815targetblank842d135a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomYushaLiupoissonashnormalmixtreedf9063a7c7c794f1bd9b598b7d72372f2f283988targetblankdf9063aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/842d1356a72db8483399d84de9ef70c229239815" target="_blank">842d135</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/YushaLiu/poisson_ash_normalmix/tree/df9063a7c7c794f1bd9b598b7d72372f2f283988" target="_blank">df9063a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -521,9 +521,10 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
+    Ignored:    .Rhistory
 
-Untracked files:
-    Untracked:  code/util.R
+Unstaged changes:
+    Modified:   code/util.R
 
 </code></pre>
 <p>
@@ -562,6 +563,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/YushaLiu/poisson_ash_normalmix/blob/df9063a7c7c794f1bd9b598b7d72372f2f283988/analysis/first-analysis.Rmd" target="_blank">df9063a</a>
+</td>
+<td>
+yushaliu
+</td>
+<td>
+2020-06-10
+</td>
+<td>
+Change the function name to pois_ash_vb
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/YushaLiu/poisson_ash_normalmix/e9894bc58423b649537d82407107d26f045dd52c/docs/first-analysis.html" target="_blank">e9894bc</a>
+</td>
+<td>
+yushaliu
+</td>
+<td>
+2020-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -655,7 +690,7 @@ y &lt;- rpois(n,lambdasparse); s &lt;- rep(1, n)</code></pre>
 <pre class="r"><code>sigma2 &lt;- c(1e-6, 1e-5, 1e-4, 4e-4, 1e-3, 4e-3, 1e-2, 2e-2, 4e-2, 8e-2, 0.16, 0.32, 0.64, 1, 2, 4, 8, 16)
 
 start_time = proc.time()
-fit &lt;- pois_ash(y, s, sigma2, init=NULL, maxiter=200, tol=1e-6, verbose=FALSE)
+fit &lt;- pois_ash_vb(y, s, sigma2, init=NULL, maxiter=200, tol=1e-6, verbose=FALSE)
 lambda.pm &lt;- rowSums(fit$Ez * exp(fit$mu + fit$m + fit$v2/2))
 runtime = proc.time() - start_time</code></pre>
 </div>
@@ -704,7 +739,7 @@ yushaliu
 <pre class="r"><code>## running time
 runtime</code></pre>
 <pre><code>   user  system elapsed 
- 14.520   2.165  16.694 </code></pre>
+ 14.618   1.955  16.633 </code></pre>
 </div>
 <div id="check-results" class="section level3">
 <h3>Check results</h3>
@@ -744,6 +779,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/YushaLiu/poisson_ash_normalmix/blob/e9894bc58423b649537d82407107d26f045dd52c/docs/figure/first-analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">e9894bc</a>
+</td>
+<td>
+yushaliu
+</td>
+<td>
+2020-06-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/YushaLiu/poisson_ash_normalmix/blob/aaea64f77314587c34b690c0d770d9297302e1c0/docs/figure/first-analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">aaea64f</a>
