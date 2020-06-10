@@ -51,7 +51,7 @@ update_q <- function(x, s, mu, sigma2, init=list(NULL), control=list(maxiter=100
 }
 
 
-pois_ash <- function(x, s, sigma2, init=NULL, maxiter=100, tol=1e-6, verbose=FALSE){
+pois_ash_vb <- function(x, s, sigma2, init=NULL, maxiter=100, tol=1e-6, verbose=FALSE){
   n <- length(x)
   K <- length(sigma2)
   
